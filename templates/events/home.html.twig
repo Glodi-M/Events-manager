@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<main class="container mx-auto my-8 px-6">
+    {# <!-- Section: Populaire en ce moment -->
+    <section>
+        <h2 class="text-2xl font-bold mb-4">Populaire en ce moment <span class="text-blue-500">📈</span></h2>
+        <div class="relative bg-blue-100 rounded-lg overflow-hidden shadow-lg">
+            <img src="https://via.placeholder.com/1500x500" alt="Portes ouvertes" class="w-full h-48 object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent">
+                <div class="p-6 text-white">
+                    <h3 class="text-xl font-bold">Portes ouvertes</h3>
+                    <p class="text-sm">26 janvier</p>
+                </div>
+            </div>
+        </div>
+    </section> #}
+
+    {# <!-- Section: Tous les évènements -->
+    <section class="mt-12">
+        <h2 class="text-2xl font-bold mb-4">Tous les évènements</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {% for event in events %}
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="{{ event.image }}" alt="{{ event.title }}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">{{ event.title }}</h3>
+                    <p class="text-sm text-gray-500">{{ event.date }}</p>
+                    <p class="text-sm text-gray-700">{{ event.description }}</p>
+                    <a href="{{ event.link }}" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section> #}
+
+ <main class="container mx-auto my-8 px-6">
+        <!-- Section: Populaire en ce moment -->
+        <section>
+            <h2 class="text-2xl font-bold mb-4">Populaire en ce moment <span class="text-blue-500">📈</span></h2>
+            <div class="relative bg-blue-100 rounded-lg overflow-hidden shadow-lg">
+                <img src="https://via.placeholder.com/1500x500" alt="Portes ouvertes" class="w-full h-48 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent">
+                    <div class="p-6 text-white">
+                        <h3 class="text-xl font-bold">Portes ouvertes</h3>
+                        <p class="text-sm">26 janvier</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Tous les évènements -->
+        <section class="mt-12">
+            <h2 class="text-2xl font-bold mb-4">Tous les évènements</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+                <!-- Copiez-collez ce bloc pour plus d'évènements -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+                <!-- Ajoutez plus de blocs ici -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <img src="https://via.placeholder.com/400x300" alt="Évènement 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="text-lg font-bold">Ninho - Stade de France</h3>
+                        <p class="text-sm text-gray-500">3 mai 2025</p>
+                        <p class="text-sm text-gray-700">Date supplémentaire disponible.</p>
+                        <a href="#" class="text-blue-500 font-bold text-sm mt-2 inline-block">Voir plus</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+</main>
+{% endblock %}
