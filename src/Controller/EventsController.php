@@ -25,4 +25,15 @@ final class EventsController extends AbstractController{
             'controller_name' => 'EventsController',
         ]);
     }
+
+
+    // Crétion de la Route voir plus sur les événements
+
+    #[Route('/events/event/', name:'events_show')]
+    public function Show (){
+        return $this->render('events/show.html.twig', parameters: [
+            'controller_name' => 'EventsController',
+        ]);
+    }
+
 }
