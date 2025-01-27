@@ -18,6 +18,8 @@ final class EventsController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
+    
+    // La route pour Connexion
 
     #[Route('/events', name: 'app_events')]
     public function index(): Response
