@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Event;
+use App\Form\EventType;
 use App\Repository\EventRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface; // Ajout de cette ligne pour utiliser l'EntityManager
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
@@ -18,7 +22,7 @@ final class EventsController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-    
+
     // La route pour Connexion
 
     #[Route('/events', name: 'app_events')]
@@ -46,6 +50,56 @@ final class EventsController extends AbstractController
             'events' => $events,  // Passer les événements à la vue
         ]);
     }
+
+    // La Route pour ajouter l'énévenement
+
+    #[Route(path: '/event/creat', name: 'create_event')]
+    #[Route(path: '/event/{id}/edit', name: 'event_edit')]
+
+    public function form(Event $event = null, Request $request)
+    {
+
+        if (!$event) {
+
+            // Création du formulaire 
+
+            $event = new event();
+        }
+
+        // Création manuellement du formulaire 
+
+        // $form = $this->createFormBuilder($event)
+        //     ->add('title')
+        //     ->add('content')
+        //     ->add('image')
+        //     ->add('date')
+        //     ->add('place')
+        //     ->getForm();
+
+
+        // j'appelle mon formulaire crée en ligne de commande venant du dossier Form
+
+        $form = $this->createForm(EventType::class, $event);
+        $form->handleRequest($request);
+        // Enregistrement de données 
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $this->entityManager->persist($event);
+            $this->entityManager->flush();
+
+
+            return $this->redirectToRoute('events_show', ['id' => $event->getId()]);
+        }
+
+        return $this->render('events/create.html.twig', [
+            'formEvent' => $form->createView(),
+            'controller_name' => 'EventsController',
+            'editMode' => $event->getId() !== null
+        ]);
+    }
+
+
 
     // route pour voir plus
 
