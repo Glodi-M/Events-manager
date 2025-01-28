@@ -5,9 +5,7 @@ namespace App\Controller;
 use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface; // Ajout de cette ligne pour utiliser l'EntityManager
-use Doctrine\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -47,11 +45,23 @@ final class EventsController extends AbstractController
 
         return $this->render('events/home.html.twig', [
             'controller_name' => 'EventsController',
-            'events' => $events,  // Passer les événements à la vue
+            'events' => $events
         ]);
     }
 
-    // La Route pour ajouter l'énévenement
+    // La Route pour ajouter, Modifier et suppression se l'énévenement
+
+
+    #[Route(path: '/event/{id}/delete', name: 'event_delete')]
+    public function delete(Event $event)
+    {
+        $this->entityManager->remove($event);
+        $this->entityManager->flush();
+
+
+        return $this->redirectToRoute('home');
+    }
+
 
     #[Route(path: '/event/creat', name: 'create_event')]
     #[Route(path: '/event/{id}/edit', name: 'event_edit')]
@@ -118,7 +128,7 @@ final class EventsController extends AbstractController
 
         return $this->render('events/show.html.twig', [
             'event' => $event,
-            'controller_name' => 'EventsController',
+            'controller_name' => 'EventsController'
         ]);
     }
 }
