@@ -4,27 +4,28 @@
 
 {% block body %}
 
+	<div class="p-5">
 
-	<h1 class="text-6xl mb-10">
+		<h1 class="text-6xl mb-10">
 
-		{% if editMode %}
+			{% if editMode %}
 
-			Modification de l'événement
+				Modification de l'événement
 
-		{% else %}
+			{% else %}
 
-			Création de l'événement !
+				Création de l'événement !
 
-		{% endif %}
+			{% endif %}
 
-	</h1>
+		</h1>
 
-	{{ form_start(formEvent)}}
+		{{ form_start(formEvent)}}
 
-	{{form_row(formEvent.title,{'attr':{'placeholder':'Titre de l\'événement'}})}}
+		{{form_row(formEvent.title,{'attr':{'placeholder':'Titre de l\'événement'}})}}
     {{form_row(formEvent.content,{'attr':{'placeholder':'Description de l\'événement'}})}}
-	{{form_row(formEvent.image,{'attr':{'placeholder':'URL de l\'image d\'événement'}})}}
-	{{form_row(formEvent.place,{'attr':{'placeholder':'Lieu de l\'événement'}})}}
+		{{form_row(formEvent.image,{'attr':{'placeholder':'URL de l\'image d\'événement'}})}}
+		{{form_row(formEvent.place,{'attr':{'placeholder':'Lieu de l\'événement'}})}}
     {{form_row(formEvent.date,)}}
 	
     <button type="submit" class="btn btn-success">
@@ -41,6 +42,6 @@
     {% endif %}
 
 	{{form_end(formEvent)}}
-
+	</div>
 
 {% endblock %}
