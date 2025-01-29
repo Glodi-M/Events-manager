@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register
+{% endblock %}
+
+{% block body %}
+
+	<div class="flex justify-center items-center min-h-screen bg-gray-100 p-5">
+		<div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+
+			<h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Inscription</h1>
+
+			<!-- Affichage des erreurs -->
+			<div class="mb-4 text-red-500">
+				{{ form_errors(registrationForm) }}
+			</div>
+
+			<!-- Formulaire -->
+			{{ form_start(registrationForm, { 'attr': { 'class': 'space-y-4' } }) }}
+
+			<!-- Username -->
+			<div>
+				{{ form_row(registrationForm.username, {
+                    'attr': { 
+                        'class': 'w-full border border-gray-300 p-3 rounded-md text-sm outline-none focus:ring-2 focus:ring-blue-500'
+                    },
+                    'label': 'Username',
+                }) }}
+			</div>
+
+			<!-- Email -->
+			<div>
+				{{ form_row(registrationForm.email, {
+                    'attr': { 
+                        'class': 'w-full border border-gray-300 p-3 rounded-md text-sm outline-none focus:ring-2 focus:ring-blue-500'
+                    },
+                    'label': 'Email',
+                }) }}
+			</div>
+
+			<!-- Password -->
+			<div>
+				{{ form_row(registrationForm.plainPassword, {
+                    'label': 'Password',
+                    'attr': { 
+                        'class': 'w-full border border-gray-300 p-3 rounded-md text-sm outline-none focus:ring-2 focus:ring-blue-500'
+                    },
+                }) }}
+			</div>
+
+			<!-- Agree to terms -->
+			<div>
+				{{ form_row(registrationForm.agreeTerms, {
+                    'attr': { 'class': 'mb-4' }
+                }) }}
+			</div>
+
+			<!-- Submit Button -->
+			<div>
+				<button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-200">
+					Register
+				</button>
+			</div>
+
+			{{ form_end(registrationForm) }}
+
+			<!-- Login Link -->
+			<p class="text-center mt-4 text-sm text-gray-600">
+				Already have an account?
+				<a href="{{ path('app_login') }}" class="text-blue-600 hover:underline">Log in</a>
+			</p>
+
+		</div>
+	</div>
+
+{% endblock %}
