@@ -52,7 +52,7 @@ final class EventsController extends AbstractController
     // La Route pour ajouter, Modifier et suppression se l'énévenement
 
 
-    #[Route(path: '/event/{id}/delete', name: 'event_delete')]
+    #[Route(path: '/admin/event/{id}/delete', name: 'event_delete')]
     public function delete(Event $event)
     {
         $this->entityManager->remove($event);
@@ -63,8 +63,8 @@ final class EventsController extends AbstractController
     }
 
 
-    #[Route(path: '/event/creat', name: 'create_event')]
-    #[Route(path: '/event/{id}/edit', name: 'event_edit')]
+    #[Route(path: '/admin/event/creat', name: 'create_event')]
+    #[Route(path: '/admin/event/{id}/edit', name: 'event_edit')]
 
     public function form(Event $event = null, Request $request)
     {

@@ -1,19 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register
+{% block title %}
+	Register
 {% endblock %}
 
 {% block body %}
 
-	<div class="flex justify-center items-center min-h-screen bg-gray-100 p-5">
-		<div class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
+<div
+	class="bg-cover bg-center bg-fixed"
+	style="background-image: url('{{ asset('images/HAl3DL.webp') }}');">
+	<div
+		class="flex justify-center items-center min-h-screen bg-gray-900 bg-opacity-50 p-5">
+		<div
+			class="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
 
-			<h1 class="text-3xl font-bold text-center mb-6 text-gray-800">Inscription</h1>
+			<!-- Titre -->
+			<h1
+				class="text-3xl font-bold text-center mb-6 text-gray-800">
+				Inscription
+			</h1>
 
 			<!-- Affichage des erreurs -->
-			<div class="mb-4 text-red-500">
-				{{ form_errors(registrationForm) }}
-			</div>
+			{% if form_errors(registrationForm) %}
+				<div
+					class="mb-4 text-red-500 bg-red-100 p-3 rounded-md">
+					{{ form_errors(registrationForm) }}
+				</div>
+			{% endif %}
 
 			<!-- Formulaire -->
 			{{ form_start(registrationForm, { 'attr': { 'class': 'space-y-4' } }) }}
@@ -24,53 +37,67 @@
                     'attr': { 
                         'class': 'w-full border border-gray-300 p-3 rounded-md text-sm outline-none focus:ring-2 focus:ring-blue-500'
                     },
-                    'label': 'Username',
+                    'label': 'Nom d\'utilisateur',
                 }) }}
-			</div>
+				</div>
 
-			<!-- Email -->
-			<div>
-				{{ form_row(registrationForm.email, {
+				<!-- Email -->
+				<div>
+					{{ form_row(registrationForm.email, {
                     'attr': { 
                         'class': 'w-full border border-gray-300 p-3 rounded-md text-sm outline-none focus:ring-2 focus:ring-blue-500'
                     },
                     'label': 'Email',
                 }) }}
-			</div>
+				</div>
 
-			<!-- Password -->
-			<div>
-				{{ form_row(registrationForm.plainPassword, {
-                    'label': 'Password',
+				<!-- Password -->
+				<div>
+					{{ form_row(registrationForm.plainPassword, {
+                    'label': 'Mot de passe',
                     'attr': { 
                         'class': 'w-full border border-gray-300 p-3 rounded-md text-sm outline-none focus:ring-2 focus:ring-blue-500'
                     },
                 }) }}
-			</div>
+				</div>
 
-			<!-- Agree to terms -->
-			<div>
-				{{ form_row(registrationForm.agreeTerms, {
-                    'attr': { 'class': 'mb-4' }
+				<!-- Agree to terms -->
+				<div
+					class="flex items-center">
+					{{ form_row(registrationForm.agreeTerms, {
+                    'attr': { 'class': 'h-4 w-4 text-blue-500 border-gray-300 rounded' }
                 }) }}
+					<label
+						for="agreeTerms"
+						class="ml-2 text-sm text-gray-600">
+						J'accepte les termes et conditions
+					</label>
+				</div>
+
+				<!-- Submit Button -->
+				<div>
+					<button
+						type="submit"
+						class="w-full bg-green-500 text-white p-3 rounded-md hover:bg-green-600 transition duration-200">
+						S'inscrire
+
+					</button>
+				</div>
+
+				{{ form_end(registrationForm) }}
+
+					<!-- Login Link -->
+					<p
+						class="text-center mt-4 text-sm text-gray-600">
+						Vous avez déjà un compte ?
+						<a
+							href="{{ path('app_login') }}" class="text-blue-600 hover:underline">
+							 Connectez-vous
+						</a>
+					</p>
+
+				</div>
 			</div>
-
-			<!-- Submit Button -->
-			<div>
-				<button type="submit" class="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 transition duration-200">
-					Register
-				</button>
-			</div>
-
-			{{ form_end(registrationForm) }}
-
-			<!-- Login Link -->
-			<p class="text-center mt-4 text-sm text-gray-600">
-				Already have an account?
-				<a href="{{ path('app_login') }}" class="text-blue-600 hover:underline">Log in</a>
-			</p>
-
 		</div>
-	</div>
 
-{% endblock %}
+	{% endblock %}
