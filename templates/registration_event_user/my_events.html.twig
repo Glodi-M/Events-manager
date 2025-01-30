@@ -1,0 +1,63 @@
+{# templates/registration/my_events.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mes Événements
+{% endblock %}
+
+{% block body %}
+	<div
+		class="container mx-auto px-4 py-8">
+		<h1
+			class="text-3xl font-bold mb-6">
+			Mes Événements Inscrits
+		</h1>
+
+		{% if events|length > 0 %}
+			<div
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+				{% for event in events %}
+					<div
+						class="bg-white rounded-lg shadow-lg overflow-hidden">
+						<img
+							src="{{ event.image }}" alt="{{ event.title }}" class="w-full h-48 object-cover">
+						<div
+							class="p-6">
+							<h3
+								class="text-xl font-semibold text-gray-800">
+								{{ event.title }}
+							</h3>
+							<p
+								class="text-sm text-gray-700 mt-2">
+								{{ event.place }}
+							</p>
+							<p
+								class="text-sm text-gray-500">
+								{{ event.date|date('d/m/Y') }}
+							</p>
+							<p
+								class="text-sm text-gray-700 mt-2">
+								{{ event.tags }}
+							</p>
+							<a
+								href="{{ path('events_show', {'id': event.id}) }}" class="mt-4 inline-block text-green-500 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors duration-300">
+								Voir plus
+							</a>
+							<a
+								href="{{ path('event_unregister', {'eventId': event.id}) }}" class="text-red-600 py-2 px-4 rounded-md hover:bg-gray-300 transition-colors duration-300"
+								onclick="return confirm('Êtes-vous sûr de vouloir vous désinscrire de cet événement ?');">
+								Se désinscrire
+							</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p
+				class="text-gray-600">
+				Vous n'êtes inscrit à aucun événement pour le moment.
+			</p>
+		{% endif %}
+	</div>
+{% endblock %}
