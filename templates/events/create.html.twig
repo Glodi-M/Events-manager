@@ -4,44 +4,64 @@
 
 {% block body %}
 
-	<div class="p-5">
+	<div
+		class="container py-5 bg-cover bg-center bg-fixed"
+		style="background-image: url('{{ asset('images/HAl3DL.webp') }}'); background-size: cover;">
 
-		<h1 class="text-6xl mb-10">
-
+		<h1
+			class="text-center text-4xl font-bold mb-6 text-gray-800 text-shadow-lg">
 			{% if editMode %}
-
-				Modification de l'événement
-
+				Modifier l'événement
 			{% else %}
-
-				Création de l'événement !
-
+				Création de l'événement
 			{% endif %}
-
 		</h1>
 
-		{{ form_start(formEvent)}}
+		<div
+			class="row justify-content-center">
+			<div
+				class="col-md-8 col-lg-6">
+				{{ form_start(formEvent, {'attr': {'class': 'bg-white p-5 rounded shadow-lg'}}
+				) }}
+				<div
+					class="mb-4">
+					{{ form_row(formEvent.title, {'attr': {'class': 'form-control', 'placeholder': 'Titre de l\'événement'}}) }}
+            </div>
+            <div class="mb-4">
+                {{ form_row(formEvent.content, {'attr': {'class': 'form-control', 'placeholder': 'Description de l\'événement'}}
+					) }}
+				</div>
+				<div
+					class="mb-4">
+					{{ form_row(formEvent.image, {'attr': {'class': 'form-control', 'placeholder': 'URL de l\'image d\'événement'}}
+					) }}
+				</div>
+				<div
+					class="mb-4">
+					{{ form_row(formEvent.place, {'attr': {'class': 'form-control', 'placeholder': 'Lieu de l\'événement'}}) }}
+            </div>
 
-		{{form_row(formEvent.title,{'attr':{'placeholder':'Titre de l\'événement'}})}}
-    {{form_row(formEvent.content,{'attr':{'placeholder':'Description de l\'événement'}})}}
-		{{form_row(formEvent.image,{'attr':{'placeholder':'URL de l\'image d\'événement'}})}}
-		{{form_row(formEvent.place,{'attr':{'placeholder':'Lieu de l\'événement'}})}}
-    {{form_row(formEvent.date,)}}
-	
-    <button type="submit" class="btn btn-success">
-    
-    {% if editMode  %}
+            <div class="mb-4">
+                {{ form_row(formEvent.date, {'attr': {'class': 'form-control'}}
+					) }}
+				</div>
+				<div
+					class="text-center">
+					<button
+						type="submit"
+						class="btn btn-success w-100 py-2">
+						{% if editMode %}
+							Modifier
+						{% else %}
+							Ajouter l'événement
+						{% endif %}
+					</button>
+				</div>
 
-    Modifier
+				{{ form_end(formEvent) }}
+				</div>
+			</div>
 
-    {% else %}
-    Ajouter l'événement
+		</div>
 
-    </button>
-
-    {% endif %}
-
-	{{form_end(formEvent)}}
-	</div>
-
-{% endblock %}
+	{% endblock %}

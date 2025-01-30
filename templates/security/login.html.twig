@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block body %}
-	<!-- L'image de fond -->
 	<div
 		class="bg-cover bg-center bg-fixed"
 		style="background-image: url('{{ asset('images/HAl3DL.webp') }}');">
@@ -26,14 +25,14 @@
 				{% if app.user %}
 					<div
 						class="mb-3 text-green-500">
-						You are logged in as
+						Vous êtes connecté en tant que
 						<strong>
 							{{ app.user.userIdentifier }}
 						</strong>
 						,
 						<a
 							href="{{ path('app_logout') }}" class="text-blue-600 hover:underline">
-							Logout
+							Déconnexion
 						</a>
 					</div>
 				{% endif %}
@@ -41,7 +40,7 @@
 				<!-- Titre -->
 				<h1
 					class="text-3xl font-bold text-center mb-6 text-gray-800">
-					Please sign in
+					Veuillez vous connecter
 				</h1>
 
 				<!-- Formulaire de connexion -->
@@ -72,7 +71,7 @@
 						<label
 							for="password"
 							class="block text-sm font-medium text-gray-700">
-							Password
+							Mot de passe
 						</label>
 						<input
 							type="password"
@@ -93,7 +92,7 @@
 					<button
 						type="submit"
 						class="w-full bg-green-600 text-white p-3 rounded-md hover:bg-green-700 transition duration-200">
-						Sign in
+						Se connecter
 					</button>
 				</form>
 
@@ -102,16 +101,17 @@
 					class="mt-4 text-center">
 					<a
 						href="{{ path('app_register') }}" class="text-sm text-blue-600 hover:underline">
-						Create an account
+						Créer un compte
 					</a>
 					<br>
 					<a
 						href=""
 						class="text-sm text-blue-600 hover:underline">
-						Forgot your password?
+						Mot de passe oublié ?
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
+
 {% endblock %}

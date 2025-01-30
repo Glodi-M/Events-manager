@@ -2,70 +2,114 @@
 
 {% block body %}
 
-	<body class="bg-cover bg-center bg-fixed" style="background-image: url('{{ asset('images/white-music-background_njs6jzi3_thumbnail-1080_01.png') }}');"></body>
+	<body
+		class="bg-cover bg-center bg-fixed"
+		style="background-image: url('{{ asset('images/white-music-background_njs6jzi3_thumbnail-1080_01.png') }}');"></body>
 
-	<div class="flex justify-around flex-row items-center">
-    <h1 class="text-6xl font-bold mb-5">Evénement</h1>
+	<div
+		class="flex justify-around flex-row items-center">
+		<h1
+			class="text-6xl font-bold mb-5">
+			Evénement
+		</h1>
 
-    {% if app.user %}
-        {% if 'ROLE_ADMIN' in app.user.getRoles() %}
-            <div class="flex gap-4 mb-5">
-                <a href="{{ path('event_edit', {'id': event.id}) }}" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">
-                    Modifier
-                </a>
-                <a href="{{ path('event_delete', {'id': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">
-                    Supprimer
-                </a>
-            </div>
-        {% elseif 'ROLE_USER' in app.user.getRoles() %}
-            <div class="flex gap-4 mb-5">
-                <a href="" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">
-                    S'inscrire
-                </a>
-            </div>
-        {% endif %}
-    {% endif %}
-</div>
+		{% if app.user %}
+			{% if 'ROLE_ADMIN' in app.user.getRoles() %}
+				<div
+					class="flex gap-4 mb-5">
+					<a
+						href="{{ path('event_edit', {'id': event.id}) }}" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">
+						Modifier
+					</a>
+					<a
+						href="{{ path('event_delete', {'id': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300"
+						onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">
+						Supprimer
+					</a>
+				</div>
+			{% elseif 'ROLE_USER' in app.user.getRoles() %}
+				<div
+					class="flex gap-4 mb-5">
+					<a
+						href=""
+						class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300">
+						S'inscrire
+					</a>
+				</div>
+			{% endif %}
+		{% endif %}
+	</div>
 
 
-	<section class="flex justify-center items-center">
+	<section
+		class="flex justify-center items-center">
 
-		<div class="bg-white rounded-lg shadow-lg overflow-hidden w-64 mt-6 transition-transform transform hover:scale-105">
-                            <div class="bg-white rounded-lg overflow-hidden">
-                                <img src="{{ event.image }}" alt="Évènement 1" class="w-full h-48 object-cover">
-                                <div class="p-6">
-                                    <h3 class="text-xl font-semibold text-gray-800">{{ event.title }}</h3>
-                                    <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.place }}</p>
-                                    <p class="text-sm text-gray-500">{{ event.date | date('d/m/y') }}</p>
-                                    <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.content }}</p>
-                                </div>
-                            </div>
-                        </div>
+		<div
+			class="bg-white rounded-lg shadow-lg overflow-hidden w-64 mt-6 transition-transform transform hover:scale-105">
+			<div
+				class="bg-white rounded-lg overflow-hidden">
+				<img
+					src="{{ event.image }}" alt="Évènement 1"
+					class="w-full h-48 object-cover">
+				<div
+					class="p-6">
+					<h3
+						class="text-xl font-semibold text-gray-800">
+						{{ event.title }}
+					</h3>
+					<p
+						class="text-sm text-gray-700 mt-2 line-clamp-3">
+						{{ event.place }}
+					</p>
+					<p
+						class="text-sm text-gray-500">
+						{{ event.date | date('d/m/y') }}
+					</p>
+					<p
+						class="text-sm text-gray-700 mt-2 line-clamp-3">
+						{{ event.content }}
+					</p>
+				</div>
+			</div>
+		</div>
 
 	</section>
 
-	<div class="p-20">
+	<div
+		class="p-20">
 
 		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
+			<span>
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
 			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
+			<span>
+				Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.
+			</span>
 		</p>
 
 		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
+			<span>
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
 			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
+			<span>
+				Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.
+			</span>
 		</p>
 		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
+			<span>
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
 			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
+			<span>
+				Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.
+			</span>
 		</p>
 		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
+			<span>
+				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
 			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
+			<span>
+				Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.
+			</span>
 		</p>
 
 	</div>
