@@ -33,65 +33,59 @@
 			data-bs-theme="dark">
 			<div
 				class="container-fluid">
+				<a
+					class="navbar-brand text-white"
+					href="/">
+					Evento
+				</a>
+
 				<div
-					class="d-flex justify-content-between w-100">
-					<a
-						class="navbar-brand text-white"
-						href="/">
-						Evento
-					</a>
-
+					class="d-flex w-100 justify-content-between">
+					<!-- Partie gauche : Espace Admin / Utilisateur -->
 					{% if app.user %}
-						<div
-							class="d-flex justify-content-center w-100">
-							<ul
-								class="navbar-nav me-auto mb-2 mb-lg-0">
-
-
-								{% if 'ROLE_ADMIN' in app.user.getRoles() %}
-									<li
-										class="nav-item">
-										<span
-											class="nav-link text-white">
-											Espace Administrateur
-										</span>
-									</li>
-
-									<li
-										class="nav-item">
-										<a
-											class="nav-link active text-white"
-											href="{{ path('create_event') }}">
-											Création de l'événement
-										</a>
-									</li>
-									<li
-										class="nav-item">
-										<a
-											class="nav-link active text-white"
-											href="">
-											Voir les inscrits
-										</a>
-									</li>
-								{% elseif 'ROLE_USER' in app.user.getRoles() %}
-									<li
-										class="nav-item">
-										<a
-											class="nav-link active text-white"
-											href="{{ path('my_events') }}">
-											Mes événements
-										</a>
-									</li>
-								{% endif %}
-							</ul>
-						</div>
+						<ul
+							class="navbar-nav me-auto mb-2 mb-lg-0">
+							{% if 'ROLE_ADMIN' in app.user.getRoles() %}
+								<li
+									class="nav-item">
+									<span
+										class="nav-link text-white">
+										Espace Administrateur
+									</span>
+								</li>
+								<li
+									class="nav-item">
+									<a
+										class="nav-link active text-white"
+										href="{{ path('create_event') }}">
+										Création de l'événement
+									</a>
+								</li>
+								<li
+									class="nav-item">
+									<a
+										class="nav-link active text-white"
+										href="">
+										Voir les inscrits
+									</a>
+								</li>
+							{% elseif 'ROLE_USER' in app.user.getRoles() %}
+								<li
+									class="nav-item">
+									<a
+										class="nav-link active text-white"
+										href="{{ path('my_events') }}">
+										Mes événements
+									</a>
+								</li>
+							{% endif %}
+						</ul>
 					{% endif %}
 
 					<!-- Partie droite : Connexion, Inscription ou Déconnexion -->
 					<ul
 						class="navbar-nav ms-auto d-flex align-items-center space-x-4">
 						{% if app.user %}
-							<!-- Si l'utilisateur est connecté -->
 							<li
 								class="nav-item">
 								<span
@@ -109,7 +103,6 @@
 								</a>
 							</li>
 						{% else %}
-							<!-- Si l'utilisateur n'est pas connecté -->
 							<li
 								class="nav-item">
 								<a
@@ -132,6 +125,7 @@
 			</div>
 		</nav>
 
+
 		<!-- Main content -->
 		<div>
 			{% block body %}
@@ -150,6 +144,8 @@
 function resetTimer()
 {
 
+
+
 clearTimeout( timeout );
 timeout = setTimeout( logout, 1800000 ); // 30 minutes (en millisecondes)
 }
@@ -157,22 +153,30 @@ timeout = setTimeout( logout, 1800000 ); // 30 minutes (en millisecondes)
 function logout()
 {
 
+
+
 fetch( '{{ path("app_logout") }}',
-{ method: "POST" } ).then( () => location.reload() ) // Recharge la page après la déconnexion.catch( error => console.error( "Erreur de déconnexion :", error ) );
+{ method: "POST" } ).then( () => location.reload() ); // Recharge la page après la déconnexion.catch( error => console.error( "Erreur de déconnexion :", error ) );
 
 }
 
 function initActivityListeners()
 {
 
+
+
 document.addEventListener( "mousemove", resetTimer );
 document.addEventListener( "keypress", resetTimer );
 document.addEventListener( "click", resetTimer );
 document.addEventListener( "scroll", resetTimer );
 
+
+
 }
 
 document.addEventListener( "DOMContentLoaded", () => {
+
+
 
 resetTimer(); // Démarre le timer dès que le DOM est chargé
 initActivityListeners(); // Active les écouteurs d'événements
