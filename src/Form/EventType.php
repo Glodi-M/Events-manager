@@ -19,6 +19,7 @@ class EventType extends AbstractType
                 'widget' => 'single_text'
             ])
             ->add('place')
+            ->add('tags')
         ;
     }
 

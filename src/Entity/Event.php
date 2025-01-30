@@ -30,6 +30,9 @@ class Event
     #[ORM\Column(length: 255)]
     private ?string $place = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $Tags = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -91,6 +94,18 @@ class Event
     public function setPlace(string $place): static
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    public function getTags(): ?string
+    {
+        return $this->Tags;
+    }
+
+    public function setTags(string $Tags): static
+    {
+        $this->Tags = $Tags;
 
         return $this;
     }

@@ -35,7 +35,7 @@
                                     <h3 class="text-xl font-semibold text-gray-800">{{ event.title }}</h3>
                                     <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.place }}</p>
                                     <p class="text-sm text-gray-500">{{ event.date | date('d/m/y') }}</p>
-                                    <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.content }}</p>
+                                    <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.tags}}</p>
                                     <a href="{{ path('events_show', {'id': event.id}) }}" class="text-green-600 font-bold text-sm mt-3 inline-block hover:text-green-800 transition-colors">Voir plus</a>
                                 </div>
                             </div>

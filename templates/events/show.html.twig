@@ -37,35 +37,17 @@
                                     <h3 class="text-xl font-semibold text-gray-800">{{ event.title }}</h3>
                                     <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.place }}</p>
                                     <p class="text-sm text-gray-500">{{ event.date | date('d/m/y') }}</p>
-                                    <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.content }}</p>
+                                    <p class="text-sm text-gray-700 mt-2 line-clamp-3">{{ event.tags }}</p>
                                 </div>
                             </div>
                         </div>
 
 	</section>
 
-	<div class="p-20">
+	<div class="p-20 text-center">
 
 		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
-			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
-		</p>
-
-		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
-			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
-		</p>
-		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
-			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
-		</p>
-		<p>
-			<span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui suscipit maxime aperiam culpa nihil. Ullam porro cum reprehenderit beatae deleniti debitis saepe suscipit, obcaecati iste perferendis corporis tempora expedita minima!
-			</span>
-			<span>Maiores quia architecto veniam illum vero at, cumque aliquam ipsa magnam quisquam expedita debitis labore autem nostrum sunt ea nemo cum quae hic rerum similique facere? Veniam magni quaerat a.</span>
+			{{ event.content }}
 		</p>
 
 	</div>
