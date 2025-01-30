@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EventRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -29,9 +31,6 @@ class Event
 
     #[ORM\Column(length: 255)]
     private ?string $place = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $tags = null;
 
     public function getId(): ?int
     {
@@ -94,18 +93,6 @@ class Event
     public function setPlace(string $place): static
     {
         $this->place = $place;
-
-        return $this;
-    }
-
-    public function getTags(): ?string
-    {
-        return $this->tags;
-    }
-
-    public function setTags(string $tags): static
-    {
-        $this->tags = $tags;
 
         return $this;
     }
