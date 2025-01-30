@@ -18,10 +18,10 @@ class Event
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(type: Types::TEXT)]
     private ?string $content = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 500)]
     private ?string $image = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -29,6 +29,9 @@ class Event
 
     #[ORM\Column(length: 255)]
     private ?string $place = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $tags = null;
 
     public function getId(): ?int
     {
@@ -91,6 +94,18 @@ class Event
     public function setPlace(string $place): static
     {
         $this->place = $place;
+
+        return $this;
+    }
+
+    public function getTags(): ?string
+    {
+        return $this->tags;
+    }
+
+    public function setTags(string $tags): static
+    {
+        $this->tags = $tags;
 
         return $this;
     }

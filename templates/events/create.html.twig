@@ -28,7 +28,7 @@
 					{{ form_row(formEvent.title, {'attr': {'class': 'form-control', 'placeholder': 'Titre de l\'événement'}}) }}
             </div>
             <div class="mb-4">
-                {{ form_row(formEvent.content, {'attr': {'class': 'form-control', 'placeholder': 'Description de l\'événement'}}
+                {{ form_row(formEvent.tags, {'attr': {'class': 'form-control', 'placeholder': 'La catégorie de l\'événement'}}
 					) }}
 				</div>
 				<div
@@ -45,6 +45,12 @@
                 {{ form_row(formEvent.date, {'attr': {'class': 'form-control'}}
 					) }}
 				</div>
+
+				<div
+					class="mb-4">
+					{{ form_row(formEvent.content, {'attr': {'class': 'form-control', 'placeholder': 'La description de l\'événement'}}
+					) }}
+				</div>
 				<div
 					class="text-center">
 					<button
@@ -59,9 +65,9 @@
 				</div>
 
 				{{ form_end(formEvent) }}
-				</div>
 			</div>
-
 		</div>
 
-	{% endblock %}
+	</div>
+
+{% endblock %}
