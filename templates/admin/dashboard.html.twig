@@ -1,0 +1,130 @@
+{# templates/admin/dashboard.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Tableau de Bord Administrateur
+{% endblock %}
+
+{% block body %}
+	<div
+		class="container mx-auto px-4 py-8">
+		<h1
+			class="text-4xl font-bold mb-8 text-gray-800 text-center">
+			Tableau de Bord Administrateur
+		</h1>
+
+		<div
+			class="bg-white rounded-lg p-6">
+			<h2
+				class="text-2xl font-semibold mb-6 text-gray-700">
+				Liste des Utilisateurs et Inscriptions
+			</h2>
+
+			<table
+				class="w-full table-fixed bg-white border border-gray-300 rounded-lg">
+				<thead
+					class="bg-gray-200 text-gray-700">
+					<tr>
+						<th
+							class="py-3 px-4 text-left text-sm min-w-[150px]">
+							ID Utilisateur
+						</th>
+						<th
+							class="py-3 px-4 text-left text-sm min-w-[150px]">
+							Nom
+						</th>
+						<th
+							class="py-3 px-4 text-left text-sm min-w-[150px]">
+							Email
+						</th>
+						<th
+							class="py-3 px-4 text-left text-sm min-w-[150px]">
+							ID Événement
+						</th>
+						<th
+							class="py-3 px-4 text-left text-sm min-w-[150px]">
+							Titre Événement
+						</th>
+						<th
+							class="py-3 px-4 text-left text-sm min-w-[150px]">
+							Date d'inscription
+						</th>
+						<th
+							class="py-3 px-4 text-left text-sm min-w-[150px]">
+							Actions
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for registration in registrations %}
+						<tr
+							class="border-b hover:bg-gray-50 transition">
+							<td
+								class="py-3 px-4 text-sm text-center">
+								{{ registration.user.id }}
+							</td>
+							<td
+								class="py-3 px-4 text-sm">
+								{{ registration.user.username }}
+							</td>
+							<td
+								class="py-3 px-4 text-sm">
+								{{ registration.user.email }}
+							</td>
+							<td
+								class="py-3 px-4 text-sm text-center">
+								{{ registration.event.id }}
+							</td>
+							<td
+								class="py-3 px-4 text-sm">
+								{{ registration.event.title }}
+							</td>
+							<td
+								class="py-3 px-4 text-sm">
+								{{ registration.date|date('d/m/Y H:i') }}
+							</td>
+							<td
+								class="py-3 px-4 text-center">
+								<form
+									action="{{ path('admin_delete_user', {'id': registration.user.id}) }}" method="POST"
+									onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+									<input
+										type="hidden"
+										name="_method"
+										value="POST">
+									<button
+										type="submit"
+										class="bg-red-500 text-white py-2 px-3 rounded-lg flex items-center gap-2 hover:bg-red-700 transition">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewbox="0 0 24 24"
+											stroke-width="2"
+											stroke="currentColor"
+											class="w-5 h-5">
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M6 18L18 6M6 6l12 12"/>
+										</svg>
+
+									</button>
+
+								</form>
+							</td>
+						</tr>
+					{% else %}
+						<tr>
+							<td
+								colspan="7"
+								class="py-3 px-4 text-center text-gray-500">
+								Aucune inscription trouvée.
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

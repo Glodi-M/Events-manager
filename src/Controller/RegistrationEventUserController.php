@@ -60,7 +60,7 @@ final class RegistrationEventUserController extends AbstractController
     }
 
 
-    // La Route pour Afficher Mes événements inscrits
+    // La Route pour Afficher les événements inscrits
 
     #[Route('/user/mes-evenements', name: 'my_events')]
 

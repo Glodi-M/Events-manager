@@ -4,6 +4,15 @@
 
 {% block body %}
 
+
+	{% for message in app.flashes('success') %}
+		<div
+			class="alert alert-success">
+			{{ message }}
+		</div>
+	{% endfor %}
+
+
 	<div
 		class="container py-5 bg-cover bg-center bg-fixed"
 		style="background-image: url('{{ asset('images/HAl3DL.webp') }}'); background-size: cover;">

@@ -6,10 +6,12 @@ use App\Entity\Event;
 use App\Form\EventType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class EventsController extends AbstractController
 {
@@ -20,17 +22,6 @@ final class EventsController extends AbstractController
     {
         $this->entityManager = $entityManager;
     }
-
-    // La route pour Connexion
-
-    #[Route('/events', name: 'app_events')]
-    public function index(): Response
-    {
-        return $this->render('events/index.html.twig', [
-            'controller_name' => 'EventsController',
-        ]);
-    }
-
 
     // La Route pour Afiicher la liste des événements dans la page d'acceuil
 
@@ -49,7 +40,7 @@ final class EventsController extends AbstractController
         ]);
     }
 
-    // La Route pour ajouter, Modifier et suppression se l'énévenement
+    // La Route pour ajouter, Modifier et Supprimer l'événement Administrateur
 
 
     #[Route(path: '/admin/event/{id}/delete', name: 'event_delete')]
@@ -58,7 +49,7 @@ final class EventsController extends AbstractController
         $this->entityManager->remove($event);
         $this->entityManager->flush();
 
-
+        $this->addFlash('success', 'Événement supprimé avec succès !');
         return $this->redirectToRoute('home');
     }
 
@@ -91,12 +82,17 @@ final class EventsController extends AbstractController
 
         $form = $this->createForm(EventType::class, $event);
         $form->handleRequest($request);
+
         // Enregistrement de données 
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $this->entityManager->persist($event);
             $this->entityManager->flush();
+
+            $message = $event->getId() ? 'Événement modifié avec succès !' : 'Événement créé avec succès !';
+            $this->addFlash('success', $message);
+
 
 
             return $this->redirectToRoute('events_show', ['id' => $event->getId()]);
