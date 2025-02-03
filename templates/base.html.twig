@@ -55,15 +55,6 @@
 										Dashboard Admin
 									</a>
 								</li>
-								<li
-									class="nav-item">
-									<a
-										class="nav-link active text-white"
-										href="{{ path('create_event') }}">
-										Création de l'événement
-									</a>
-								</li>
-
 							{% elseif 'ROLE_USER' in app.user.getRoles() %}
 								<li
 									class="nav-item">

@@ -7,17 +7,13 @@ use App\Form\EventType;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class EventsController extends AbstractController
 {
     private $entityManager;
 
-    // Injection de l'EntityManagerInterface dans le constructeur
     public function __construct(EntityManagerInterface $entityManager)
     {
         $this->entityManager = $entityManager;
@@ -31,7 +27,6 @@ final class EventsController extends AbstractController
         // Utilisation de l'EntityManager pour accéder au repository
         // $repo = $this->entityManager->getRepository(Event::class);
 
-        // Exemple de récupération des événements
         $events = $repo->findAll();
 
         return $this->render('events/home.html.twig', [
@@ -59,24 +54,12 @@ final class EventsController extends AbstractController
 
     public function form(Event $event = null, Request $request)
     {
-
         if (!$event) {
 
-            // Création du formulaire 
+            // Création d'un nouvel événement
 
-            $event = new event();
+            $event = new Event();
         }
-
-        // Création manuellement du formulaire 
-
-        // $form = $this->createFormBuilder($event)
-        //     ->add('title')
-        //     ->add('content')
-        //     ->add('image')
-        //     ->add('date')
-        //     ->add('place')
-        //     ->getForm();
-
 
         // j'appelle mon formulaire crée en ligne de commande venant du dossier Form
 
@@ -89,6 +72,8 @@ final class EventsController extends AbstractController
 
             $this->entityManager->persist($event);
             $this->entityManager->flush();
+
+            // Message flash dynamique selon si c'est une création ou une modification
 
             $message = $event->getId() ? 'Événement modifié avec succès !' : 'Événement créé avec succès !';
             $this->addFlash('success', $message);
@@ -104,8 +89,6 @@ final class EventsController extends AbstractController
             'editMode' => $event->getId() !== null
         ]);
     }
-
-
 
     // route pour voir plus
 

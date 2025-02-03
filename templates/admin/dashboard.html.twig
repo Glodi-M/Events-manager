@@ -1,9 +1,7 @@
-{# templates/admin/dashboard.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Tableau de Bord Administrateur
+	Admin Dashboard
 {% endblock %}
 
 {% block body %}
@@ -11,120 +9,347 @@
 		class="container mx-auto px-4 py-8">
 		<h1
 			class="text-4xl font-bold mb-8 text-gray-800 text-center">
-			Tableau de Bord Administrateur
+			Tableau de bord Admin
 		</h1>
 
 		<div
-			class="bg-white rounded-lg p-6">
-			<h2
-				class="text-2xl font-semibold mb-6 text-gray-700">
-				Liste des Utilisateurs et Inscriptions
-			</h2>
+			class="mb-10 flex space-x-4 justify-center">
+			{# Lien "Ajouter un événement" #}
+			<a
+				href="{{ path('create_event') }}" class="bg-blue-500 text-white py-2 px-4 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewbox="0 0 24 24"
+					stroke-width="2"
+					stroke="currentColor"
+					class="w-5 h-5">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M12 4v16m8-8H4"/>
+				</svg>
+				Ajouter un événement
+			</a>
 
-			<table
-				class="w-full table-fixed bg-white border border-gray-300 rounded-lg">
-				<thead
-					class="bg-gray-200 text-gray-700">
-					<tr>
-						<th
-							class="py-3 px-4 text-left text-sm min-w-[150px]">
-							ID Utilisateur
-						</th>
-						<th
-							class="py-3 px-4 text-left text-sm min-w-[150px]">
-							Nom
-						</th>
-						<th
-							class="py-3 px-4 text-left text-sm min-w-[150px]">
-							Email
-						</th>
-						<th
-							class="py-3 px-4 text-left text-sm min-w-[150px]">
-							ID Événement
-						</th>
-						<th
-							class="py-3 px-4 text-left text-sm min-w-[150px]">
-							Titre Événement
-						</th>
-						<th
-							class="py-3 px-4 text-left text-sm min-w-[150px]">
-							Date d'inscription
-						</th>
-						<th
-							class="py-3 px-4 text-left text-sm min-w-[150px]">
-							Actions
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for registration in registrations %}
-						<tr
-							class="border-b hover:bg-gray-50 transition">
-							<td
-								class="py-3 px-4 text-sm text-center">
-								{{ registration.user.id }}
-							</td>
-							<td
-								class="py-3 px-4 text-sm">
-								{{ registration.user.username }}
-							</td>
-							<td
-								class="py-3 px-4 text-sm">
-								{{ registration.user.email }}
-							</td>
-							<td
-								class="py-3 px-4 text-sm text-center">
-								{{ registration.event.id }}
-							</td>
-							<td
-								class="py-3 px-4 text-sm">
-								{{ registration.event.title }}
-							</td>
-							<td
-								class="py-3 px-4 text-sm">
-								{{ registration.date|date('d/m/Y H:i') }}
-							</td>
-							<td
-								class="py-3 px-4 text-center">
-								<form
-									action="{{ path('admin_delete_user', {'id': registration.user.id}) }}" method="POST"
-									onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
-									<input
-										type="hidden"
-										name="_method"
-										value="POST">
-									<button
-										type="submit"
-										class="bg-red-500 text-white py-2 px-3 rounded-lg flex items-center gap-2 hover:bg-red-700 transition">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewbox="0 0 24 24"
-											stroke-width="2"
-											stroke="currentColor"
-											class="w-5 h-5">
-											<path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												d="M6 18L18 6M6 6l12 12"/>
-										</svg>
+			{# Lien "Modifier ou Supprimer un événement" #}
+			<a
+				href="{{ path('home') }}" class="bg-green-500 text-white py-2 px-4 rounded-lg flex items-center gap-2 hover:bg-green-700 transition">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewbox="0 0 24 24"
+					stroke-width="2"
+					stroke="currentColor"
+					class="w-5 h-5">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+				</svg>
+				Modifier ou Supprimer un événement
+			</a>
 
-									</button>
+			{# Bouton "Imprimer le tableau" #}
+			<button
+				onclick="window.print()"
+				class="bg-gray-500 text-white py-2 px-4 rounded-lg flex items-center gap-2 hover:bg-gray-700 transition">
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewbox="0 0 24 24"
+					stroke-width="2"
+					stroke="currentColor"
+					class="w-5 h-5">
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						d="M6 9V3h12v6M6 9h12M6 9v6m12-6v6M6 15h12M6 15v6h12v-6"/>
+				</svg>
+				Imprimer le tableau
+			</button>
+		</div>
 
-								</form>
-							</td>
-						</tr>
-					{% else %}
+
+		{# Conteneur des onglets #}
+		<div
+			class="bg-white rounded-lg shadow-md p-6">
+			{# Boutons des onglets #}
+			<div
+				class="flex space-x-4 border-b border-gray-200 mb-6">
+				<button
+					id="users-tab"
+					class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none border-b-2 border-transparent"
+					onclick="switchTab('users')">
+					Utilisateurs
+				</button>
+				<button
+					id="registrations-tab"
+					class="tab-button py-2 px-4 text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none border-b-2 border-transparent"
+					onclick="switchTab('registrations')">
+					Inscriptions
+				</button>
+			</div>
+
+			{# Contenu des onglets #}
+			<div
+				id="users-content"
+				class="tab-content">
+				{# Tableau des utilisateurs #}
+				<h2
+					class="text-2xl font-semibold mb-6 text-gray-700">
+					Liste des utilisateurs
+				</h2>
+				<table
+					class="w-full table-fixed bg-white border border-gray-300 rounded-lg">
+					<thead
+						class="bg-gray-200 text-gray-700">
 						<tr>
-							<td
-								colspan="7"
-								class="py-3 px-4 text-center text-gray-500">
-								Aucune inscription trouvée.
-							</td>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								ID
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Nom
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Email
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Action
+							</th>
 						</tr>
-					{% endfor %}
-				</tbody>
-			</table>
+					</thead>
+					<tbody>
+						{% for user in users %}
+							<tr
+								class="border-b hover:bg-gray-50 transition">
+								<td
+									class="py-3 px-4 text-sm text-center">
+									{{ user.id }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm">
+									{{ user.username }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm">
+									{{ user.email }}
+								</td>
+								<td
+									class="py-3 px-4 text-center">
+									<form
+										action="{{ path('admin_delete_user', {'id': user.id}) }}" method="POST"
+										onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur ?');">
+										<input
+											type="hidden"
+											name="_method"
+											value="POST">
+										<button
+											type="submit"
+											class="bg-red-500 text-white py-2 px-3 rounded-lg flex items-center gap-2 hover:bg-red-700 transition">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewbox="0 0 24 24"
+												stroke-width="2"
+												stroke="currentColor"
+												class="w-5 h-5">
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													d="M6 18L18 6M6 6l12 12"/>
+											</svg>
+										</button>
+									</form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td
+									colspan="4"
+									class="py-3 px-4 text-center text-gray-500">
+									Aucun utilisateur trouvé.
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+
+			<div
+				id="registrations-content"
+				class="tab-content hidden">
+				{# Tableau des inscriptions #}
+				<h2
+					class="text-2xl font-semibold mb-6 text-gray-700">
+					Liste des inscriptions
+				</h2>
+				<table
+					class="w-full table-fixed bg-white border border-gray-300 rounded-lg">
+					<thead
+						class="bg-gray-200 text-gray-700">
+						<tr>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								ID Inscription
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Nom Utilisateur
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Email Utilisateur
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								ID Événement
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Titre Événement
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Date Événement
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Action
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for registration in registrations %}
+							<tr
+								class="border-b hover:bg-gray-50 transition">
+								<td
+									class="py-3 px-4 text-sm text-center">
+									{{ registration.id }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm">
+									{{ registration.user.username }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm">
+									{{ registration.user.email }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm text-center">
+									{{ registration.event.id }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm">
+									{{ registration.event.title }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm">
+									{{ registration.event.date|date('d/m/Y') }}
+								</td>
+								<td
+									class="py-3 px-4 text-center">
+									<form
+										action="{{ path('admin_delete_registration', {'id': registration.id}) }}" method="POST"
+										onsubmit="return confirm('Voulez-vous vraiment supprimer cette inscription ?');">
+										<input
+											type="hidden"
+											name="_method"
+											value="POST">
+										<button
+											type="submit"
+											class="bg-red-500 text-white py-2 px-3 rounded-lg flex items-center gap-2 hover:bg-red-700 transition">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewbox="0 0 24 24"
+												stroke-width="2"
+												stroke="currentColor"
+												class="w-5 h-5">
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													d="M6 18L18 6M6 6l12 12"/>
+											</svg>
+										</button>
+									</form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td
+									colspan="7"
+									class="py-3 px-4 text-center text-gray-500">
+									Aucune inscription trouvée.
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>
+
+	{# Script pour gérer les onglets #}
+	<script>
+		function switchTab( tabName )
+{ // Masquer tous les contenus d'onglets
+document.querySelectorAll( '.tab-content' ).forEach( content => {
+
+
+
+
+
+content.classList.add( 'hidden' );
+
+
+
+
+
+} );
+
+document.querySelectorAll( '.tab-button' ).forEach( button => {
+
+
+
+
+
+button.classList.remove( 'border-blue-500', 'text-blue-600' );
+button.classList.add( 'border-transparent', 'text-gray-500' );
+
+
+
+
+
+} );
+
+document.getElementById ( `${ tabName }-content` ).classList.remove( 'hidden' );
+
+document.getElementById ( `${ tabName }-tab` ).classList.remove( 'border-transparent', 'text-gray-500' );
+document.getElementById ( `${ tabName }-tab` ).classList.add( 'border-blue-500', 'text-blue-600' );
+
+
+
+
+
+}
+
+document.addEventListener( 'DOMContentLoaded', () => {
+
+
+
+
+
+switchTab( 'users' );
+
+
+
+
+
+} );
+	</script>
 {% endblock %}
