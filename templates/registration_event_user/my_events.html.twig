@@ -9,10 +9,24 @@
 {% block body %}
 	<div
 		class="container mx-auto px-4 py-8">
+
 		<h1
 			class="text-3xl font-bold mb-6">
 			Mes Événements Inscrits
 		</h1>
+
+		{# Affichage des messages flash avec Tailwind CSS #}
+		{% for type, messages in app.flashes %}
+			{% for message in messages %}
+				<div
+					class="p-4 mb-4 text-center text-white rounded-lg
+											{% if type == 'success' %}bg-green-500{% endif %}
+											{% if type == 'error' %}bg-red-500{% endif %}
+											{% if type == 'warning' %}bg-yellow-500{% endif %}">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endfor %}
 
 		{% if events|length > 0 %}
 			<div

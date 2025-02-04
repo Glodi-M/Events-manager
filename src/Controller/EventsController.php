@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Event;
 use App\Form\EventType;
+use App\Entity\Registration;
 use App\Repository\EventRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -105,8 +106,25 @@ final class EventsController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
+        // Vérifier si l'utilisateur est connecté
+        $user = $this->getUser();
+        $isRegistered = false;
+
+        if ($user) {
+            // Vérifier si l'utilisateur est inscrit à cet événement
+            $registrationRepo = $this->entityManager->getRepository(Registration::class);
+            $registration = $registrationRepo->findOneBy([
+                'event' => $event,
+                'user' => $user,
+            ]);
+
+            // Si une inscription est trouvée, l'utilisateur est déjà inscrit
+            $isRegistered = $registration !== null;
+        }
+
         return $this->render('events/show.html.twig', [
             'event' => $event,
+            'isRegistered' => $isRegistered,
             'controller_name' => 'EventsController'
         ]);
     }

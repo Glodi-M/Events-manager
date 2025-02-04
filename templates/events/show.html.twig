@@ -1,127 +1,98 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	{# <body
-			class="bg-cover bg-center bg-fixed min-h-screen"
-			style="background-image: url('{{ asset('images/white-music-background_njs6jzi3_thumbnail-1080_01.png') }}');"> #}
 	{# Afficher les messages flash avec Tailwind CSS #}
-		{% for type, messages in app.flashes %}
-			{% for message in messages %}
-				<div
+	{% for type, messages in app.flashes %}
+		{% for message in messages %}
+			<div
 				class="p-4 mb-4 text-center text-white rounded-lg
-																																				{% if type == 'success' %}bg-green-500{% endif %}
-																																				{% if type == 'error' %}bg-red-500{% endif %}
-																																				{% if type == 'warning' %}bg-yellow-500{% endif %}">
+										{% if type == 'success' %}bg-green-500{% endif %}
+										{% if type == 'error' %}bg-red-500{% endif %}
+										{% if type == 'warning' %}bg-yellow-500{% endif %}">
 				{{ message }}
 			</div>
 		{% endfor %}
 	{% endfor %}
 
 	<div
-		class="flex flex-col md:flex-row justify-around items-center p-4">
-		<h1
-			class="text-4xl md:text-6xl font-bold mb-5 text-center text-gray-800">
-			Événement
-		</h1>
-
-		{# Boutons pour les administrateurs et utilisateurs #}
-		{% if app.user %}
-			<div
-				class="flex gap-4 mb-5">
-				{% if 'ROLE_ADMIN' in app.user.getRoles() %}
-					<a
-						href="{{ path('event_edit', {'id': event.id}) }}" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 flex items-center gap-2">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewbox="0 0 24 24"
-							stroke-width="2"
-							stroke="currentColor"
-							class="w-5 h-5">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
-						</svg>
-						Modifier
-					</a>
-					<a
-						href="{{ path('event_delete', {'id': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 flex items-center gap-2"
-						onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewbox="0 0 24 24"
-							stroke-width="2"
-							stroke="currentColor"
-							class="w-5 h-5">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d="M6 18L18 6M6 6l12 12"/>
-						</svg>
-						Supprimer
-					</a>
-				{% elseif 'ROLE_USER' in app.user.getRoles() %}
-					<a
-						href="{{ path('event_register', {'id': event.id}) }}" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors duration-300 flex items-center gap-2">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewbox="0 0 24 24"
-							stroke-width="2"
-							stroke="currentColor"
-							class="w-5 h-5">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d="M12 4v16m8-8H4"/>
-						</svg>
-						S'inscrire
-					</a>
-				{% endif %}
-			</div>
-		{% endif %}
-	</div>
-
-	{# Section de présentation de l'événement #}
-	<section
-		class="flex justify-center items-center p-4">
+		class="flex flex-col items-center p-4">
 		<div
-			class="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm md:max-w-md lg:max-w-lg mt-6 transition-transform transform hover:scale-105">
-			<img
-				src="{{ event.image }}" alt="{{ event.title }}" class="w-full h-48 md:h-64 object-cover">
-			<div
-				class="p-6">
-				<h3
-					class="text-xl font-semibold text-gray-800">
-					{{ event.title }}
-				</h3>
-				<p
-					class="text-sm text-gray-700 mt-2">
-					Lieu :
-					{{ event.place }}
-				</p>
-				<p
-					class="text-sm text-gray-500 mt-2">
-					Date :
-					{{ event.date | date('d/m/Y') }}
-				</p>
-				<p
-					class="text-sm text-gray-700 mt-2">
-					Tags :
-					{{ event.tags }}
-				</p>
-			</div>
-		</div>
-	</section>
+			class="flex flex-wrap justify-between items-center w-full max-w-5xl">
+			<h1
+				class="text-4xl md:text-6xl font-bold mb-5 text-gray-800">
+				{{ event.title }}
+			</h1>
 
-	{# Contenu détaillé de l'événement #}
-	<div
-		class="p-4 md:p-20 text-justify">
-		<p
-			class="text-gray-700 leading-relaxed">
-			{{ event.content }}
-		</p>
+			{# Boutons pour administrateurs et utilisateurs, positionnés à côté du titre #}
+			{% if app.user %}
+				<div
+					class="flex gap-4 mb-5">
+					{% if 'ROLE_ADMIN' in app.user.getRoles() %}
+						<a
+							href="{{ path('event_edit', {'id': event.id}) }}" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 flex items-center gap-2">
+							Modifier
+						</a>
+						<a
+							href="{{ path('event_delete', {'id': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 flex items-center gap-2"
+							onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">
+							Supprimer
+						</a>
+					{% elseif 'ROLE_USER' in app.user.getRoles() %}
+						{% if isRegistered %}
+							<a
+								href="{{ path('event_unregister', {'eventId': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 flex items-center gap-2">
+								Se désinscrire
+							</a>
+						{% else %}
+							<a
+								href="{{ path('event_register', {'id': event.id}) }}" class="bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 transition-colors duration-300 flex items-center gap-2">
+								S'inscrire
+							</a>
+						{% endif %}
+					{% endif %}
+				</div>
+			{% endif %}
+		</div>
+
+		{# Section de présentation de l'événement #}
+		<section
+			class="flex justify-center items-center p-4 w-full">
+			<div
+				class="bg-white rounded-lg shadow-lg overflow-hidden w-full max-w-sm md:max-w-md lg:max-w-lg mt-6 transition-transform transform hover:scale-105">
+				<img
+					src="{{ event.image }}" alt="{{ event.title }}" class="w-full h-48 md:h-64 object-cover">
+				<div
+					class="p-6">
+					<h3
+						class="text-xl font-semibold text-gray-800">
+						{{ event.title }}
+					</h3>
+					<p
+						class="text-sm text-gray-700 mt-2">
+						Lieu :
+						{{ event.place }}
+					</p>
+					<p
+						class="text-sm text-gray-500 mt-2">
+						Date :
+						{{ event.date | date('d/m/Y') }}
+					</p>
+					<p
+						class="text-sm text-gray-700 mt-2">
+						Tags :
+						{{ event.tags }}
+					</p>
+				</div>
+			</div>
+		</section>
+
+		{# Contenu détaillé de l'événement #}
+		<div
+			class="p-4 md:p-20 text-justify">
+			<p
+				class="text-gray-700 leading-relaxed">
+				{{ event.content }}
+			</p>
+		</div>
 	</div>
-</body>{% endblock %}
+{% endblock %}
