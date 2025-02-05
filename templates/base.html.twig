@@ -83,7 +83,7 @@
 							<li>
 								{% if app.user %}
 									<a
-										href="{{ path('account_show') }}" class="flex items-center text-gray-800 hover:underline">
+										href="{{ path('account_show') }}" class="flex items-center text-gray-800 hover:underline text-white">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											fill="none"
@@ -101,21 +101,49 @@
 								{% endif %}
 							</li>
 
-
 							<li
 								class="nav-item">
 								<a
-									class="nav-link text-white"
-									href="{{ path('app_logout') }}" onclick="return confirm('Êtes-vous sûr de se déconnecter ?');">
+									class="nav-link text-white hover:underline"
+									href="{{ path('app_logout') }}" onclick="return confirm('Êtes-vous sûr de se déconnecter ?');"
+									style="display: flex; align-items: center;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										viewbox="0 0 24 24"
+										class="feather feather-log-out"
+										style="margin-right: 8px;">
+										<path
+											d="M17 11l4-4-4-4M7 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h4"></path>
+									</svg>
 									Déconnexion
 								</a>
 							</li>
+
+
 						{% else %}
 							<li
 								class="nav-item">
 								<a
 									class="nav-link text-white"
-									href="{{ path('app_register') }}">
+									href="{{ path('app_register') }}" style="display: flex; align-items: center;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										viewbox="0 0 24 24"
+										class="feather feather-user-plus"
+										style="margin-right: 8px;">
+										<path
+											d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M12 11V3m-4 4h8"></path>
+									</svg>
 									Inscription
 								</a>
 							</li>
@@ -123,10 +151,24 @@
 								class="nav-item">
 								<a
 									class="nav-link text-white"
-									href="{{ path('app_login') }}">
+									href="{{ path('app_login') }}" style="display: flex; align-items: center;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										viewbox="0 0 24 24"
+										class="feather feather-log-in"
+										style="margin-right: 8px;">
+										<path
+											d="M15 12H3m6-6l-6 6 6 6m9 4a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-4"></path>
+									</svg>
 									Connexion
 								</a>
 							</li>
+
 						{% endif %}
 					</ul>
 				</div>
