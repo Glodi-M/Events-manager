@@ -34,7 +34,7 @@
 			<div
 				class="container-fluid">
 				<a
-					class="navbar-brand text-white"
+					class="navbar-brand text-white text-bold"
 					href="/">
 					Evento
 				</a>
@@ -84,7 +84,7 @@
 								class="nav-item">
 								<a
 									class="nav-link text-white"
-									href="{{ path('app_logout') }}">
+									href="{{ path('app_logout') }}" onclick="return confirm('Êtes-vous sûr de se déconnecter ?');">
 									Déconnexion
 								</a>
 							</li>
@@ -92,7 +92,7 @@
 							<li
 								class="nav-item">
 								<a
-									class="nav-link"
+									class="nav-link text-white"
 									href="{{ path('app_register') }}">
 									Inscription
 								</a>
@@ -100,7 +100,7 @@
 							<li
 								class="nav-item">
 								<a
-									class="nav-link"
+									class="nav-link text-white"
 									href="{{ path('app_login') }}">
 									Connexion
 								</a>

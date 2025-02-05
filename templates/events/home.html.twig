@@ -1,40 +1,37 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-	{# <body
-								class="bg-cover bg-center bg-fixed"
-								style="background-image: url('{{ asset('images/music-video-background-ldt2a36pzgm36lf1.jpg') }}');"> #}
-
 	<div
-		class="min-h-screen flex flex-col">
-
+		class="min-h-screen flex flex-col bg-gray-50">
 		<!-- Section: Populaire en ce moment -->
 		<section
-			class="bg-white bg-opacity-80 rounded-lg shadow-md mt-8 mx-auto w-full max-w-6xl p-6">
+			class="bg-white bg-opacity-90 rounded-lg shadow-md mt-8 mx-auto w-full max-w-8xl p-6">
 			<h2
-				class="text-3xl font-semibold text-gray-800 mb-4">
+				class="text-3xl font-semibold text-gray-800 mb-4 flex items-center">
 				Populaire en ce moment
 				<span
-					class="text-blue-500">
+					class="text-blue-500 ml-2">
 					📈
 				</span>
 			</h2>
 			<div
-				class="relative bg-blue-100 rounded-lg overflow-hidden shadow-lg">
+				class="relative bg-blue-100 rounded-lg overflow-hidden shadow-lg group">
 				<img
-					src="{{ asset('images/imageEvents.png') }}" alt="Portes ouvertes"
-					class="w-full h-58 object-cover">
+					id="carousel-image"
+					src="{{ asset('images/concert-gims-paris-seine-musicale-fevrier-2025copie.png') }}" alt="Concert à venir"
+					class="w-full h-85 object-cover transform transition-all duration-700 ease-out opacity-100"/>
 				<div
 					class="absolute inset-0 bg-gradient-to-t from-black to-transparent">
 					<div
-						class="p-6 text-white">
+						class="p-6 text-white absolute bottom-0">
 						<h3
-							class="text-xl font-bold">
-							Portes ouvertes
+							class="text-5xl font-bold">
+							Concert à venir
 						</h3>
 						<p
-							class="text-sm">
-							26 janvier
+							id="event-date"
+							class="text-2xl mt-3 font-bold">
+							21, 22 février
 						</p>
 					</div>
 				</div>
@@ -43,50 +40,43 @@
 
 		<!-- Section: Tous les évènements -->
 		<section
-			class="mt-12">
+			class="mt-12 px-4">
 			<h2
-				class="text-2xl font-bold mb-6 text-center">
-				Tous les évènements
+				class="text-4xl font-bold mb-10 text-center text-gray-800">
+				Tous les évènements disponibles
 			</h2>
-
 			<article
-				class="flex flex-wrap justify-center gap-x-8 gap-y-12">
-
+				class="flex flex-wrap justify-center gap-8">
 				{% for event in events %}
 					<div
-						class="bg-white rounded-lg shadow-lg overflow-hidden w-64 mt-6 transition-transform transform hover:scale-105">
+						class="bg-white rounded-lg shadow-lg overflow-hidden w-72 transition-transform transform hover:scale-105">
+						<img
+							src="{{ event.image }}" alt="{{ event.title }}" class="w-full h-48 object-cover"/>
 						<div
-							class="bg-white rounded-lg overflow-hidden">
-							<img
-								src="{{ event.image }}" alt="Évènement 1"
-								class="w-full h-48 object-cover">
-							<div
-								class="p-6">
-								<h3
-									class="text-xl font-semibold text-gray-800">
-									{{ event.title }}
-								</h3>
-								<p
-									class="text-sm text-gray-700 mt-2 line-clamp-3">
-									{{ event.place }}
-								</p>
-								<p
-									class="text-sm text-gray-500">
-									{{ event.date | date('d/m/y') }}
-								</p>
-								<p
-									class="text-sm text-gray-700 mt-2 line-clamp-3">
-									{{ event.tags }}
-								</p>
-								<a
-									href="{{ path('events_show', {'id': event.id}) }}" class="text-green-600 font-bold text-sm mt-3 inline-block hover:text-green-800 transition-colors">
-									Voir plus
-								</a>
-							</div>
+							class="p-6">
+							<h3
+								class="text-xl font-semibold text-gray-800">
+								{{ event.title }}
+							</h3>
+							<p
+								class="text-sm text-gray-700 mt-2">
+								{{ event.place }}
+							</p>
+							<p
+								class="text-sm text-gray-500 mt-2">
+								{{ event.date | date('d/m/y') }}
+							</p>
+							<p
+								class="text-sm text-gray-700 mt-2">
+								{{ event.tags }}
+							</p>
+							<a
+								href="{{ path('events_show', {'id': event.id}) }}" class="text-green-600 font-bold text-sm mt-3 inline-block hover:text-green-800 transition-colors">
+								Voir plus
+							</a>
 						</div>
 					</div>
 				{% endfor %}
-
 			</article>
 		</section>
 
@@ -94,8 +84,7 @@
 		<footer
 			class="bg-gray-800 text-white py-8 mt-12">
 			<div
-				class="container mx-auto flex flex-wrap justify-between px-6">
-				<!-- Section 1: Logo & Description -->
+				class="container mx-auto flex flex-wrap justify-between px-4">
 				<div
 					class="w-full sm:w-1/3 mb-6 sm:mb-0">
 					<h4
@@ -106,108 +95,154 @@
 						class="text-sm mt-2">
 						Nous organisons et vous proposons des événements musicaux qui vous connectent et vous inspirent.
 					</p>
-				</p>
-			</div>
-
-			<!-- Section 2: Liens rapides -->
-			<div
-				class="w-full sm:w-1/3 mb-6 sm:mb-0">
-				<h5
-					class="font-semibold text-lg">
-					Liens rapides
-				</h5>
-				<ul
-					class="mt-3 space-y-2 text-sm">
-					<li>
-						<a
-							href="#"
-							class="hover:text-green-500 transition-colors">
-							À propos
-						</a>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="hover:text-green-500 transition-colors">
-							Événements
-						</a>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="hover:text-green-500 transition-colors">
-							Contact
-						</a>
-					</li>
-					<li>
-						<a
-							href="#"
-							class="hover:text-green-500 transition-colors">
-							Blog
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<!-- Section 3: Réseaux sociaux -->
-			<div
-				class="w-full sm:w-1/3">
-				<h5
-					class="font-semibold text-lg">
-					Suivez-nous
-				</h5>
+				</div>
 				<div
-					class="flex mt-3 space-x-4">
+					class="w-full sm:w-1/3 mb-6 sm:mb-0">
+					<h5
+						class="font-semibold text-lg">
+						Liens rapides
+					</h5>
+					<ul
+						class="mt-3 space-y-2 text-sm">
+						<li>
+							<a
+								href="#"
+								class="hover:text-green-500 transition-colors">
+								À propos
+							</a>
+						</li>
+						<li>
+							<a
+								href="#"
+								class="hover:text-green-500 transition-colors">
+								Événements
+							</a>
+						</li>
+						<li>
+							<a
+								href="#"
+								class="hover:text-green-500 transition-colors">
+								Contact
+							</a>
+						</li>
+						<li>
+							<a
+								href="#"
+								class="hover:text-green-500 transition-colors">
+								Blog
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div
+					class="w-full sm:w-1/3">
+					<h5
+						class="font-semibold text-lg">
+						Suivez-nous
+					</h5>
+					<div
+						class="flex mt-3 space-x-4">
+						<a
+							href="#"
+							class="text-white hover:text-gray-400 transition-colors">
+							<i
+								class="fab fa-facebook-f"></i>
+						</a>
+						<a
+							href="#"
+							class="text-white hover:text-gray-400 transition-colors">
+							<i
+								class="fab fa-twitter"></i>
+						</a>
+						<a
+							href="#"
+							class="text-white hover:text-gray-400 transition-colors">
+							<i
+								class="fab fa-instagram"></i>
+						</a>
+						<a
+							href="#"
+							class="text-white hover:text-gray-400 transition-colors">
+							<i
+								class="fab fa-linkedin-in"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+			<div
+				class="bg-gray-900 text-center py-4 mt-8">
+				<p
+					class="text-sm">
+					&copy; Evento. Tous droits réservés.
+				</p>
+				<div
+					class="text-sm mt-2">
 					<a
 						href="#"
-						class="text-white hover:text-gray-400 transition-colors">
-						<i
-							class="fab fa-facebook-f"></i>
+						class="hover:text-green-500 transition-colors">
+						Politique de confidentialité
 					</a>
+					|
 					<a
 						href="#"
-						class="text-white hover:text-gray-400 transition-colors">
-						<i
-							class="fab fa-twitter"></i>
-					</a>
-					<a
-						href="#"
-						class="text-white hover:text-gray-400 transition-colors">
-						<i
-							class="fab fa-instagram"></i>
-					</a>
-					<a
-						href="#"
-						class="text-white hover:text-gray-400 transition-colors">
-						<i
-							class="fab fa-linkedin-in"></i>
+						class="hover:text-green-500 transition-colors">
+						Conditions d'utilisation
 					</a>
 				</div>
 			</div>
-		</div>
+		</footer>
+	</div>
 
-		<!-- Section 4: Copyright & Politique -->
-		<div
-			class="bg-gray-900 text-center py-4 mt-8">
-			<p
-				class="text-sm">
-				&copy; Evento. Tous droits réservés.
-			</p>
-			<div
-				class="text-sm mt-2">
-				<a
-					href="#"
-					class="hover:text-green-500 transition-colors">
-					Politique de confidentialité
-				</a>
-				|
-				<a
-					href="#"
-					class="hover:text-green-500 transition-colors">
-					Conditions d'utilisation
-				</a>
-			</div>
-		</div>
-	</footer>
+	<!-- Script pour le carrousel -->
+	<script>
+		document.addEventListener( "DOMContentLoaded", function ()
+{
 
-</div></body>{% endblock %}
+const images = [
+{
+
+src: "{{ asset('images/concert-gims-paris-seine-musicale-fevrier-2025copie.png') }}",
+date: "21, 22 février"
+
+},
+{
+
+src: "{{ asset('images/Ninho_2025_visuelweb_SDF_879x555.png') }}",
+date: "5, 6 mars"
+
+},
+{
+
+src: "{{ asset('images/Mise-en-vente-50-Cent-et-Mary-J.png') }}",
+date: "12 avril"
+
+}
+];
+
+let currentIndex = 0;
+const imgElement = document.getElementById( "carousel-image" );
+const dateElement = document.getElementById( "event-date" );
+
+function changeImage()
+{
+
+imgElement.classList.remove( "opacity-100" );
+imgElement.classList.add( "opacity-0" );
+
+setTimeout( () => {
+
+currentIndex = ( currentIndex + 1 ) % images.length;
+imgElement.src = images[ currentIndex ].src;
+dateElement.textContent = images[ currentIndex ].date;
+imgElement.classList.remove( "opacity-0" );
+imgElement.classList.add( "opacity-100" );
+
+}, 500 );
+
+}
+
+setInterval( changeImage, 3000 );
+
+} );
+	</script>
+{% endblock %}

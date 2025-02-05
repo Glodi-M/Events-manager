@@ -6,9 +6,9 @@
 		{% for message in messages %}
 			<div
 				class="p-4 mb-4 text-center text-white rounded-lg
-										{% if type == 'success' %}bg-green-500{% endif %}
-										{% if type == 'error' %}bg-red-500{% endif %}
-										{% if type == 'warning' %}bg-yellow-500{% endif %}">
+																				{% if type == 'success' %}bg-green-500{% endif %}
+																				{% if type == 'error' %}bg-red-500{% endif %}
+																				{% if type == 'warning' %}bg-yellow-500{% endif %}">
 				{{ message }}
 			</div>
 		{% endfor %}
@@ -40,7 +40,8 @@
 					{% elseif 'ROLE_USER' in app.user.getRoles() %}
 						{% if isRegistered %}
 							<a
-								href="{{ path('event_unregister', {'eventId': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 flex items-center gap-2">
+								href="{{ path('event_unregister', {'eventId': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 flex items-center gap-2"
+								onclick="return confirm('Êtes-vous sûr de vouloir vous désinscrire de cet événement ?');">
 								Se désinscrire
 							</a>
 						{% else %}
