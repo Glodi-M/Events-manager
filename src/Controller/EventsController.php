@@ -25,8 +25,6 @@ final class EventsController extends AbstractController
     #[Route('/', name: 'home')]
     public function Home(EventRepository $repo)
     {
-        // Utilisation de l'EntityManager pour accéder au repository
-        // $repo = $this->entityManager->getRepository(Event::class);
 
         $events = $repo->findAll();
 
