@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Mon Profil
+{% endblock %}
+
+{% block body %}
+	<div
+		class="min-h-screen flex flex-col items-center justify-center bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+		<!-- Avatar et titre -->
+		<div
+			class="text-center mb-8">
+			<img
+				src="https://via.placeholder.com/120"
+				alt="Avatar"
+				class="w-28 h-28 rounded-full border-4 border-blue-600 shadow-md mx-auto">
+			<h1
+				class="text-3xl font-bold text-gray-900 mt-4">
+				Mon Profil
+			</h1>
+		</div>
+
+		<!-- Informations utilisateur -->
+		<div
+			class="w-full max-w-lg space-y-6">
+			<div>
+				<p
+					class="text-sm font-medium text-gray-500">
+					Nom :
+				</p>
+				<p
+					class="text-lg font-semibold text-gray-900">
+					{{ user.username }}
+				</p>
+			</div>
+			<div>
+				<p
+					class="text-sm font-medium text-gray-500">
+					Prenom :
+				</p>
+				<p
+					class="text-lg font-semibold text-gray-900">
+					{{ user.firstName ?? 'Non renseigné' }}
+				</p>
+			</div>
+			<div>
+				<p
+					class="text-sm font-medium text-gray-500">
+					Email :
+				</p>
+				<p
+					class="text-lg font-semibold text-gray-900">
+					{{ user.email }}
+				</p>
+			</div>
+			<div>
+				<p
+					class="text-sm font-medium text-gray-500">
+					Adresse :
+				</p>
+				<p
+					class="text-lg font-semibold text-gray-900">
+					{{ user.address ?? 'Non renseignée' }}
+				</p>
+			</div>
+			<div
+				class="mb-8">
+				<p
+					class="text-sm font-medium text-gray-500">
+					Date de création du compte:
+				</p>
+				<p
+					class="text-lg font-semibold text-gray-900">
+					{{ user.createdAt|date('d/m/Y') }}
+				</p>
+			</div>
+		</div>
+
+		<!-- Bouton Modifier -->
+		<a
+			href="{{ path('account_edit') }}" class="mt-8 inline-block px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 transition duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+			Modifier mes informations
+		</a>
+	</div>
+{% endblock %}

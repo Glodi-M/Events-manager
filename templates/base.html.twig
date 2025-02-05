@@ -80,6 +80,28 @@
 									{{ app.user.username }}
 								</span>
 							</li>
+							<li>
+								{% if app.user %}
+									<a
+										href="{{ path('account_show') }}" class="flex items-center text-gray-800 hover:underline">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewbox="0 0 24 24"
+											stroke-width="1.5"
+											stroke="currentColor"
+											class="w-6 h-6 mr-2">
+											<path
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												d="M15.75 9A3.75 3.75 0 1112 5.25 3.75 3.75 0 0115.75 9zM4.5 20.25a7.5 7.5 0 0115 0"/>
+										</svg>
+										Mon compte
+									</a>
+								{% endif %}
+							</li>
+
+
 							<li
 								class="nav-item">
 								<a
@@ -137,6 +159,10 @@ function resetTimer()
 clearTimeout( timeout );
 timeout = setTimeout( logout, 1800000 );
 
+
+
+
+
 }
 
 function logout()
@@ -148,6 +174,8 @@ function logout()
 
 fetch( '{{ path("app_logout") }}',
 { method: "POST" } ).then( () => location.reload() );
+
+
 
 
 

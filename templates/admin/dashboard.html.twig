@@ -119,6 +119,10 @@
 							</th>
 							<th
 								class="py-3 px-4 text-left text-sm min-w-[150px]">
+								Date de création du compte
+							</th>
+							<th
+								class="py-3 px-4 text-left text-sm min-w-[150px]">
 								Action
 							</th>
 						</tr>
@@ -138,6 +142,10 @@
 								<td
 									class="py-3 px-4 text-sm">
 									{{ user.email }}
+								</td>
+								<td
+									class="py-3 px-4 text-sm">
+									{{ user.createdAt|date('d/m/Y') }}
 								</td>
 								<td
 									class="py-3 px-4 text-center">
