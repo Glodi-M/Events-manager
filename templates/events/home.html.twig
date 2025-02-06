@@ -71,9 +71,25 @@
 								{{ event.tags }}
 							</p>
 							<a
-								href="{{ path('events_show', {'id': event.id}) }}" class="text-green-600 font-bold text-sm mt-3 inline-block hover:text-green-800 transition-colors">
-								Voir plus
+								href="{{ path('events_show', {'id': event.id}) }}" class="flex items-center text-green-600 font-bold text-sm mt-3 inline-block hover:text-green-800 transition-all duration-300">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="24"
+									height="24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									viewbox="0 0 24 24"
+									class="feather feather-chevron-down transition-transform duration-300 group-hover:translate-y-1">
+									<polyline
+										points="6 9 12 15 18 9"></polyline>
+								</svg>
+								<span
+									class="ml-2 group-hover:underline">
+									Voir plus
+								</span>
 							</a>
+
 						</div>
 					</div>
 				{% endfor %}

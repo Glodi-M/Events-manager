@@ -6,9 +6,9 @@
 		{% for message in messages %}
 			<div
 				class="p-4 mb-4 text-center text-white rounded-lg
-															                        {% if type == 'success' %}bg-green-500{% endif %}
-															                        {% if type == 'error' %}bg-red-500{% endif %}
-															                        {% if type == 'warning' %}bg-yellow-500{% endif %}">
+									 {% if type == 'success' %}bg-green-500{% endif %}
+									 {% if type == 'error' %}bg-red-500{% endif %}
+									 {% if type == 'warning' %}bg-yellow-500{% endif %}">
 				<p>
 					{{ message }}
 				</p>
@@ -34,11 +34,44 @@
 					<a
 						href="{{ path('event_edit', {'id': event.id}) }}" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition-colors duration-300 flex items-center gap-2"
 						onclick="return confirm('Êtes-vous sûr de vouloir modifier cet événement ?');">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewbox="0 0 24 24"
+							stroke-width="2"
+							stroke="currentColor"
+							class="w-5 h-5">
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"/>
+						</svg>
 						Modifier
 					</a>
 					<a
 						href="{{ path('event_delete', {'id': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 flex items-center gap-2"
 						onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet événement ?');">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="24"
+							height="24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							viewbox="0 0 24 24"
+							class="feather feather-trash">
+							<path
+								d="M3 6h18"></path>
+							<path
+								d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+							<path
+								d="M10 11v6"></path>
+							<path
+								d="M14 11v6"></path>
+							<path
+								d="M5 6h14l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6z"></path>
+						</svg>
+
 						Supprimer
 					</a>
 				{% elseif 'ROLE_USER' in app.user.getRoles() %}
@@ -46,6 +79,33 @@
 						<a
 							href="{{ path('event_unregister', {'eventId': event.id}) }}" class="bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-300 flex items-center gap-2"
 							onclick="return confirm('Êtes-vous sûr de vouloir vous désinscrire de cet événement ?');">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								viewbox="0 0 24 24"
+								class="feather feather-user-x">
+								<path
+									d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+								<circle
+									cx="9"
+									cy="7"
+									r="4"></circle>
+								<line
+									x1="17"
+									y1="8"
+									x2="22"
+									y2="13"></line>
+								<line
+									x1="22"
+									y1="8"
+									x2="17"
+									y2="13"></line>
+							</svg>
+
 							Se désinscrire
 						</a>
 					{% else %}
