@@ -104,9 +104,9 @@
 							<li
 								class="nav-item">
 								<a
-									class="nav-link text-white hover:underline"
-									href="{{ path('app_logout') }}" onclick="return confirm('Êtes-vous sûr de se déconnecter ?');"
-									style="display: flex; align-items: center;">
+									href="{{ path('app_logout') }}" onclick="return confirm('Êtes-vous sûr de vous déconnecter ?');"
+									class="nav-link flex items-center gap-2 text-white bg-red-600 px-4 py-2 rounded-md shadow-md hover:bg-red-700 transition duration-300">
+
 									<svg
 										xmlns="http://www.w3.org/2000/svg"
 										width="24"
@@ -115,12 +115,13 @@
 										stroke="currentColor"
 										stroke-width="2"
 										viewbox="0 0 24 24"
-										class="feather feather-log-out"
-										style="margin-right: 8px;">
+										class="w-5 h-5">
 										<path
 											d="M17 11l4-4-4-4M7 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h4"></path>
 									</svg>
-									Déconnexion
+									<span>
+										Déconnexion
+									</span>
 								</a>
 							</li>
 
