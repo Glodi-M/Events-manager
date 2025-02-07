@@ -37,7 +37,7 @@ Pour démarrer le projet en mode développement, assurez-vous que XAMPP est en c
 symfony server:start
 ```
 
-Cette commande lancera le serveur de développement et vous pourrez accéder à l'application via [http://localhost:8000](http://localhost:8000).
+Cette commande lancera le serveur de développement et vous pourrez accéder à l'application via [http://localhost:8080](http://localhost:8080).
 
 ## Scripts disponibles
 
