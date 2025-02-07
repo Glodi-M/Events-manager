@@ -14,7 +14,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés sur 
 1. Clonez le dépôt du projet sur votre machine locale :
 
     ```bash
-    git clone https://github.com/besthounsa/Events-manager.git
+    git clone https://github.com/Glodi-M/Events-manager.git
     ```
 
 2. Accédez au répertoire du projet :
